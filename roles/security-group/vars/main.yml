@@ -1,0 +1,4 @@
+sq_name: webserver_sq
+sq_desc: webserver_security_group
+vpc_id: vpc-839813e7
+region: us-west-2

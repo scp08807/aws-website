@@ -1,0 +1,22 @@
+- name: Create WebServer Security Group
+  ec2_group:
+    name: "{{ sq_name }}"
+    description: "{{ sq_desc }}"
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    state: present
+    aws_secret_key: "{{ aws_secret_key }}"
+    aws_access_key: "{{ aws_access_key }}"
+    rules:
+      - proto: tcp
+        from_port: 80
+        to_port: 80
+        cidr_ip: 0.0.0.0/0
+      - proto: tcp
+        from_port: 22
+        to_port: 22
+        cidr_ip: 0.0.0.0/0
+      - proto: tcp
+        from_port: 443
+        to_port: 443
+        #group_id: amazon-elb/sg-87654321/amazon-elb-sg

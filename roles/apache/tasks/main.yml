@@ -1,0 +1,25 @@
+- name: Install Apache Webserver
+  apt: name=apache2
+       update_cache=yes
+       state=latest
+  register: log
+- debug: var=log
+  become: yes
+  
+- name: Copy HTML file
+  copy: src="./apache/files/index.html"
+        dest="/var/www/html/"
+  register: log2
+- debug: var=log2
+  become: yes
+ 
+- name: Copy Redirect HTTP/HTTPS config file 
+  copy: src="./apache/files/000-default.conf"
+        dest="/etc/apache2/sites-available/"
+  become: yes
+  
+- name: Restart Apache Websever
+  service: name=apache2
+           enabled=yes
+           state=restarted
+  become: yes

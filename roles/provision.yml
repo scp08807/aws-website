@@ -1,0 +1,19 @@
+--- # example to provision ec2 webserver instances
+# setup  security group and servers
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  vars_files:
+    - common/aws-keys.yml
+    - common/env-vars.yml
+  roles:
+    - security-group
+    - webserver
+
+# install webserver and files
+- hosts: launched
+  user: ubuntu
+  become: yes
+  gather_facts: False
+  roles:
+    - apache
