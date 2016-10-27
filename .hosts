@@ -1,0 +1,10 @@
+[local]
+localhost
+
+[jenkins]
+172.31.21.51
+
+[jenkins-slaves]
+172.31.32.100
+172.31.45.99
+
